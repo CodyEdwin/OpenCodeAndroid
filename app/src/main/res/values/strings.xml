@@ -49,6 +49,8 @@
     <string name="session_this_week">This Week</string>
     <string name="session_this_month">This Month</string>
     <string name="session_older">Older</string>
+    <string name="session_detail_title">Chat Session</string>
+    <string name="error_invalid_session">Invalid session</string>
 
     <!-- Model Selection -->
     <string name="models_title">Select Model</string>

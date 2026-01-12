@@ -199,11 +199,17 @@ public class MainActivity extends AppCompatActivity implements
 
     private void startNewChat() {
         String modelId = viewModel.getDefaultModel();
-        viewModel.createSession("New Chat", modelId != null ? modelId : "opencode/gpt-5.1-codex");
+        // Use a valid free model ID if no default is set
+        if (modelId == null || modelId.isEmpty()) {
+            modelId = "opencode/sonic";
+        }
+
+        // Create session and get session ID directly
+        String sessionId = viewModel.createSession("New Chat", modelId);
 
         // Navigate to new chat
         Intent intent = new Intent(this, SessionDetailActivity.class);
-        intent.putExtra(SessionDetailActivity.EXTRA_SESSION_ID, viewModel.getCurrentSessionId().getValue());
+        intent.putExtra(SessionDetailActivity.EXTRA_SESSION_ID, sessionId);
         startActivity(intent);
     }
 

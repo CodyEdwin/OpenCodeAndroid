@@ -2,12 +2,14 @@ package com.opencode.android.ui.session;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.opencode.android.OpenCodeApplication;
 import com.opencode.android.R;
 import com.opencode.android.databinding.ActivitySessionDetailBinding;
 
@@ -31,15 +33,32 @@ public class SessionDetailActivity extends AppCompatActivity {
 
         sessionId = getIntent().getStringExtra(EXTRA_SESSION_ID);
 
+        // Validate session ID
+        if (sessionId == null || sessionId.isEmpty()) {
+            Toast.makeText(this, R.string.error_invalid_session, Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        viewModel = new ViewModelProvider(this).get(SessionDetailViewModel.class);
+        // Initialize ViewModel with dependency injection
+        viewModel = new ViewModelProvider(this, new SessionDetailViewModel.Factory(
+                OpenCodeApplication.getAppContainer().getChatRepository()
+        )).get(SessionDetailViewModel.class);
 
+        setupToolbar();
         setupRecyclerView();
         loadSession();
+    }
+
+    private void setupToolbar() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.session_detail_title);
+        }
     }
 
     private void setupRecyclerView() {
@@ -50,6 +69,20 @@ public class SessionDetailActivity extends AppCompatActivity {
     private void loadSession() {
         if (sessionId != null) {
             viewModel.loadSession(sessionId);
+
+            // Observe session for toolbar title
+            viewModel.getSession().observe(this, session -> {
+                if (session != null && getSupportActionBar() != null) {
+                    getSupportActionBar().setTitle(session.getTitle());
+                }
+            });
+
+            // Observe errors
+            viewModel.getErrorMessage().observe(this, error -> {
+                if (error != null && !error.isEmpty()) {
+                    Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 

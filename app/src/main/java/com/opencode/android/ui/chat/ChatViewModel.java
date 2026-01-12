@@ -43,9 +43,10 @@ public class ChatViewModel extends ViewModel {
         return chatRepository.getSessionById(sessionId);
     }
 
-    public void createSession(String title, String modelId) {
+    public String createSession(String title, String modelId) {
         SessionEntity session = chatRepository.createSession(title, modelId);
         currentSessionId.setValue(session.getId());
+        return session.getId();
     }
 
     public void deleteSession(String sessionId) {
