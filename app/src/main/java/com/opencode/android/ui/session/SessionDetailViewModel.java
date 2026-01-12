@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel;
 import com.opencode.android.data.local.entity.MessageEntity;
 import com.opencode.android.data.local.entity.SessionEntity;
 import com.opencode.android.data.repository.ChatRepository;
-import com.opencode.android.data.repository.ChatRepository;
 
 import java.util.ArrayList;
 import java.util.List;

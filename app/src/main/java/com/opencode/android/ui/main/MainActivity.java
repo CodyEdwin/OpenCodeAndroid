@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.opencode.android.OpenCodeApplication;
 import com.opencode.android.R;
 import com.opencode.android.databinding.ActivityMainBinding;
+import com.opencode.android.di.AppContainer;
 import com.opencode.android.ui.chat.ChatViewModel;
 import com.opencode.android.ui.editor.CodeEditorActivity;
 import com.opencode.android.ui.models.ModelSelectionActivity;
@@ -44,11 +45,25 @@ public class MainActivity extends AppCompatActivity implements
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Ensure app is initialized before creating ViewModel
+        ensureAppInitialized();
+
         // Initialize ViewModel with manual dependency injection
-        viewModel = new ViewModelProvider(this, new ChatViewModel.Factory(
-                OpenCodeApplication.getAppContainer().getChatRepository(),
-                OpenCodeApplication.getAppContainer().getModelRepository()
-        )).get(ChatViewModel.class);
+        try {
+            AppContainer appContainer = OpenCodeApplication.getAppContainer();
+            if (appContainer != null && appContainer.getChatRepository() != null && appContainer.getModelRepository() != null) {
+                viewModel = new ViewModelProvider(this, new ChatViewModel.Factory(
+                        appContainer.getChatRepository(),
+                        appContainer.getModelRepository()
+                )).get(ChatViewModel.class);
+            } else {
+                showError("Failed to initialize app. Please restart.");
+                return;
+            }
+        } catch (Exception e) {
+            showError("Initialization error: " + e.getMessage());
+            return;
+        }
 
         setupToolbar();
         setupNavigation();
@@ -59,6 +74,14 @@ public class MainActivity extends AppCompatActivity implements
 
         // Check if launched from deep link
         handleIntent(getIntent());
+    }
+
+    private void ensureAppInitialized() {
+        // Force application initialization if not already done
+        OpenCodeApplication app = OpenCodeApplication.getInstance();
+        if (app == null) {
+            showError("Application not initialized");
+        }
     }
 
     private void setupToolbar() {
@@ -198,19 +221,35 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void startNewChat() {
-        String modelId = viewModel.getDefaultModel();
-        // Use a valid free model ID if no default is set
-        if (modelId == null || modelId.isEmpty()) {
-            modelId = "opencode/sonic";
+        try {
+            // Check if ViewModel is initialized
+            if (viewModel == null) {
+                showError("App not ready. Please wait...");
+                return;
+            }
+
+            String modelId = viewModel.getDefaultModel();
+            // Use a valid free model ID if no default is set
+            if (modelId == null || modelId.isEmpty()) {
+                modelId = "opencode/sonic";
+            }
+
+            // Create session and get session ID directly
+            String sessionId = viewModel.createSession("New Chat", modelId);
+
+            // Validate session ID
+            if (sessionId == null || sessionId.isEmpty()) {
+                showError("Failed to create session");
+                return;
+            }
+
+            // Navigate to new chat
+            Intent intent = new Intent(this, SessionDetailActivity.class);
+            intent.putExtra(SessionDetailActivity.EXTRA_SESSION_ID, sessionId);
+            startActivity(intent);
+        } catch (Exception e) {
+            showError("Error creating chat: " + e.getMessage());
         }
-
-        // Create session and get session ID directly
-        String sessionId = viewModel.createSession("New Chat", modelId);
-
-        // Navigate to new chat
-        Intent intent = new Intent(this, SessionDetailActivity.class);
-        intent.putExtra(SessionDetailActivity.EXTRA_SESSION_ID, sessionId);
-        startActivity(intent);
     }
 
     private void selectModel() {
