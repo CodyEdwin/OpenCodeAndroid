@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">OpenCode</string>
+    <string name="app_name_full">OpenCode Android</string>
+
+    <!-- Common Actions -->
+    <string name="action_settings">Settings</string>
+    <string name="action_new_chat">New Chat</string>
+    <string name="action_send">Send</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_share">Share</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_close">Close</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_pin">Pin</string>
+    <string name="action_unpin">Unpin</string>
+
+    <!-- Navigation -->
+    <string name="nav_chat">Chat</string>
+    <string name="nav_sessions">Sessions</string>
+    <string name="nav_projects">Projects</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_models">Models</string>
+
+    <!-- Chat Screen -->
+    <string name="chat_title">Chat</string>
+    <string name="chat_hint">Type your message…</string>
+    <string name="chat_loading">Generating response…</string>
+    <string name="chat_empty_title">Start a Conversation</string>
+    <string name="chat_empty_subtitle">Send a message to begin coding with AI</string>
+    <string name="chat_error_title">Something went wrong</string>
+    <string name="chat_error_message">Failed to get response. Please try again.</string>
+    <string name="chat_token_count">Tokens: %d</string>
+    <string name="chat_code_copied">Code copied to clipboard</string>
+
+    <!-- Session Screen -->
+    <string name="sessions_title">Sessions</string>
+    <string name="sessions_empty_title">No Sessions Yet</string>
+    <string name="sessions_empty_subtitle">Your chat history will appear here</string>
+    <string name="session_delete_confirm">Delete this session?</string>
+    <string name="session_delete_message">This action cannot be undone.</string>
+    <string name="session_today">Today</string>
+    <string name="session_yesterday">Yesterday</string>
+    <string name="session_this_week">This Week</string>
+    <string name="session_this_month">This Month</string>
+    <string name="session_older">Older</string>
+
+    <!-- Model Selection -->
+    <string name="models_title">Select Model</string>
+    <string name="models_loading">Loading models…</string>
+    <string name="models_error">Failed to load models</string>
+    <string name="models_search_hint">Search models…</string>
+    <string name="model_selected">Selected: %s</string>
+    <string name="model_provider_zen">OpenCode Zen</string>
+    <string name="model_provider_openai">OpenAI</string>
+    <string name="model_provider_anthropic">Anthropic</string>
+    <string name="model_provider_google">Google</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_api_section">API Configuration</string>
+    <string name="settings_api_key">API Key</string>
+    <string name="settings_api_key_hint">Enter your OpenCode Zen API key</string>
+    <string name="settings_api_base_url">Base URL</string>
+    <string name="settings_api_base_url_hint">https://opencode.ai/zen/v1</string>
+    <string name="settings_provider">Provider</string>
+    <string name="settings_model">Default Model</string>
+    <string name="settings_appearance_section">Appearance</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_system">System Default</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_font_size">Font Size</string>
+    <string name="settings_code_font">Code Font</string>
+    <string name="settings_behavior_section">Behavior</string>
+    <string name="settings_auto_save">Auto Save</string>
+    <string name="settings_streaming">Streaming Responses</string>
+    <string name="settings_syntax_highlight">Syntax Highlighting</string>
+    <string name="settings_data_section">Data</string>
+    <string name="settings_clear_history">Clear Chat History</string>
+    <string name="settings_clear_cache">Clear Cache</string>
+    <string name="settings_export_data">Export Data</string>
+    <string name="settings_about_section">About</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_privacy">Privacy Policy</string>
+    <string name="settings_terms">Terms of Service</string>
+
+    <!-- Code Editor -->
+    <string name="editor_title">Code Editor</string>
+    <string name="editor_new_file">New File</string>
+    <string name="editor_file_name">File Name</string>
+    <string name="editor_file_name_hint">Enter file name</string>
+    <string name="editor_unsaved_changes">Unsaved Changes</string>
+    <string name="editor_unsaved_message">You have unsaved changes. Do you want to save?</string>
+    <string name="editor_saved">File saved successfully</string>
+    <string name="editor_line_numbers">Line %d</string>
+    <string name="editor_indent">Indent</string>
+    <string name="editor_unindent">Unindent</string>
+    <string name="editor_find">Find</string>
+    <string name="editor_replace">Replace</string>
+
+    <!-- File Browser -->
+    <string name="file_browser_title">Files</string>
+    <string name="file_browser_empty">No files found</string>
+    <string name="file_browser_root">Root</string>
+    <string name="file_browser_new_folder">New Folder</string>
+    <string name="file_browser_delete">Delete</string>
+    <string name="file_browser_rename">Rename</string>
+    <string name="file_browser_import">Import File</string>
+
+    <!-- Error Messages -->
+    <string name="error_network">Network error. Please check your connection.</string>
+    <string name="error_api_key">Invalid API key. Please check your settings.</string>
+    <string name="error_api_error">API error: %s</string>
+    <string name="error_timeout">Request timed out. Please try again.</string>
+    <string name="error_unknown">An unknown error occurred.</string>
+    <string name="error_file_not_found">File not found</string>
+    <string name="error_permission_denied">Permission denied</string>
+    <string name="error_session_expired">Session expired. Please restart the app.</string>
+
+    <!-- Welcome Messages -->
+    <string name="welcome_title">Welcome to OpenCode</string>
+    <string name="welcome_message">Your AI-powered coding assistant. Get started by configuring your API key in settings.</string>
+    <string name="welcome_get_started">Get Started</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_send_message">Send message</string>
+    <string name="accessibility_attach_file">Attach file</string>
+    <string name="accessibility_select_model">Select AI model</string>
+    <string name="accessibility_toggle_theme">Toggle dark mode</string>
+    <string name="accessibility_delete_message">Delete message</string>
+    <string name="accessibility_copy_code">Copy code block</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_app_logo">OpenCode logo</string>
+    <string name="cd_user_avatar">User avatar</string>
+    <string name="cd_ai_avatar">AI assistant avatar</string>
+    <string name="cd_attachment">Attachment</string>
+    <string name="cd_menu">Menu</string>
+    <string name="cd_back">Go back</string>
+    <string name="cd_close">Close</string>
+</resources>

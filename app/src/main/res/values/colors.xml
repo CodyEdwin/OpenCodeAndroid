@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors - VS Code inspired -->
+    <color name="primary">#007ACC</color>
+    <color name="primary_dark">#005A9E</color>
+    <color name="primary_light">#4DA6FF</color>
+    <color name="primary_variant">#005274</color>
+
+    <!-- Secondary Colors -->
+    <color name="secondary">#C586C0</color>
+    <color name="secondary_dark">#9B4D7A</color>
+    <color name="secondary_light">#E0B3D9</color>
+    <color name="secondary_variant">#7A3E91</color>
+
+    <!-- Accent Colors -->
+    <color name="accent">#4EC9B0</color>
+    <color name="accent_dark">#3A9B87</color>
+    <color name="accent_light">#7FE0D1</color>
+
+    <!-- Background Colors -->
+    <color name="background">#1E1E1E</color>
+    <color name="background_light">#FFFFFF</color>
+    <color name="surface">#252526</color>
+    <color name="surface_light">#F3F3F3</color>
+    <color name="surface_variant">#2D2D30</color>
+    <color name="surface_elevated">#333333</color>
+
+    <!-- Code Background -->
+    <color name="code_background">#101010</color>
+    <color name="code_background_light">#F5F5F5</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#D4D4D4</color>
+    <color name="text_primary_light">#1E1E1E</color>
+    <color name="text_secondary">#858585</color>
+    <color name="text_secondary_light">#666666</color>
+    <color name="text_hint">#6A6A6A</color>
+    <color name="text_disabled">#4A4A4A</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_on_secondary">#FFFFFF</color>
+
+    <!-- Status Colors -->
+    <color name="error">#F44336</color>
+    <color name="error_dark">#D32F2F</color>
+    <color name="success">#4CAF50</color>
+    <color name="success_dark">#388E3C</color>
+    <color name="warning">#FF9800</color>
+    <color name="warning_dark">#F57C00</color>
+    <color name="info">#2196F3</color>
+    <color name="info_dark">#1976D2</color>
+
+    <!-- Role Colors (Chat messages) -->
+    <color name="role_user">#0078D4</color>
+    <color name="role_assistant">#4EC9B0</color>
+    <color name="role_system">#C586C0</color>
+    <color name="role_tool">#CE9178</color>
+
+    <!-- Syntax Highlighting Colors -->
+    <color name="syntax_keyword">#569CD6</color>
+    <color name="syntax_string">#CE9178</color>
+    <color name="syntax_number">#B5CEA8</color>
+    <color name="syntax_comment">#6A9955</color>
+    <color name="syntax_function">#DCDCAA</color>
+    <color name="syntax_variable">#9CDCFE</color>
+    <color name="syntax_type">#4EC9B0</color>
+    <color name="syntax_operator">#D4D4D4</color>
+    <color name="syntax_class">#4EC9B0</color>
+    <color name="syntax_control">#C586C0</color>
+
+    <!-- UI Element Colors -->
+    <color name="divider">#3E3E42</color>
+    <color name="divider_light">#E0E0E0</color>
+    <color name="ripple">#33FFFFFF</color>
+    <color name="ripple_light">#33000000</color>
+    <color name="scrim">#80000000</color>
+    <color name="scrim_light">#40FFFFFF</color>
+
+    <!-- Chat Bubble Colors -->
+    <color name="bubble_user">#0078D4</color>
+    <color name="bubble_user_variant">#0063B1</color>
+    <color name="bubble_assistant">#252526</color>
+    <color name="bubble_assistant_variant">#2D2D30</color>
+    <color name="bubble_tool">#2D2D30</color>
+
+    <!-- Input Colors -->
+    <color name="input_background">#3C3C3C</color>
+    <color name="input_background_light">#F5F5F5</color>
+    <color name="input_stroke">#3C3C3C</color>
+    <color name="input_stroke_error">#F44336</color>
+    <color name="input_cursor">#007ACC</color>
+
+    <!-- Status Bar and Navigation Bar -->
+    <color name="status_bar">#1E1E1E</color>
+    <color name="status_bar_light">#FFFFFF</color>
+    <color name="navigation_bar">#1E1E1E</color>
+    <color name="navigation_bar_light">#FFFFFF</color>
+
+    <!-- Transparent Colors -->
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>

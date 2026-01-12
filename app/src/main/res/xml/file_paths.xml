@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Internal app files directory -->
+    <files-path
+        name="internal_files"
+        path="." />
+
+    <!-- Cache directory -->
+    <cache-path
+        name="cache"
+        path="." />
+
+    <!-- Project files directory -->
+    <files-path
+        name="projects"
+        path="projects/" />
+
+    <!-- Session files directory -->
+    <files-path
+        name="sessions"
+        path="sessions/" />
+
+    <!-- External files directory -->
+    <external-files-path
+        name="external_files"
+        path="." />
+
+    <!-- External cache directory -->
+    <external-cache-path
+        name="external_cache"
+        path="." />
+
+    <!-- Root external storage for projects -->
+    <external-path
+        name="external_root"
+        path="OpenCode/" />
+</paths>

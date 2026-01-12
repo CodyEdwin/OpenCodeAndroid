@@ -1,0 +1,164 @@
+plugins {
+    id 'com.android.application'
+}
+
+configurations.all {
+    // Force consistent Kotlin stdlib version to resolve duplicate class conflicts
+    resolutionStrategy {
+        force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.20'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20'
+        // Force consistent JetBrains annotations version to avoid duplicate classes
+        force 'org.jetbrains:annotations:17.0.0'
+        force 'org.jetbrains:annotations-java5:17.0.0'
+        // Exclude base annotations when annotations-java5 is present to avoid duplicates
+        eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.jetbrains' && details.requested.name == 'annotations') {
+                details.useVersion('17.0.0')
+                details.because('Force annotations version to match annotations-java5')
+            }
+        }
+    }
+}
+
+configurations.implementation {
+    resolutionStrategy {
+        // Exclude base annotations from modules that pull in both
+        exclude group: 'org.jetbrains', module: 'annotations'
+    }
+}
+
+android {
+    namespace 'com.opencode.android'
+    compileSdk rootProject.ext.compileSdk
+
+    defaultConfig {
+        applicationId "com.opencode.android"
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Room schema export
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
+        // Enable vector drawable support
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds true
+        warningsAsErrors false
+        disable 'DuplicateClass'  // Allow duplicate classes in debug builds for JetBrains annotations
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+}
+
+dependencies {
+    // AndroidX Core
+    implementation "androidx.appcompat:appcompat:${rootProject.ext.appCompatVersion}"
+    implementation "androidx.core:core:${rootProject.ext.coreKtxVersion}"
+    implementation "androidx.fragment:fragment:${rootProject.ext.fragmentVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintLayoutVersion}"
+    implementation "androidx.recyclerview:recyclerview:${rootProject.ext.recyclerViewVersion}"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    // Material Design
+    implementation "com.google.android.material:material:${rootProject.ext.materialVersion}"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment:${rootProject.ext.navigationVersion}"
+    implementation "androidx.navigation:navigation-ui:${rootProject.ext.navigationVersion}"
+
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-viewmodel:${rootProject.ext.lifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-livedata:${rootProject.ext.lifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-runtime:${rootProject.ext.lifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-common-java8:${rootProject.ext.lifecycleVersion}"
+
+    // Room Database
+    implementation "androidx.room:room-runtime:${rootProject.ext.roomVersion}"
+    annotationProcessor "androidx.room:room-compiler:${rootProject.ext.roomVersion}"
+
+    // Retrofit + OkHttp for networking
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
+    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okHttpVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okHttpVersion}"
+
+    // Gson for JSON parsing
+    implementation "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
+
+    // RxJava for async operations
+    implementation "io.reactivex.rxjava3:rxjava:${rootProject.ext.rxJavaVersion}"
+    implementation "io.reactivex.rxjava3:rxandroid:${rootProject.ext.rxAndroidVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
+
+    // DataStore for preferences
+    implementation "androidx.datastore:datastore-preferences:${rootProject.ext.dataStoreVersion}"
+    implementation "androidx.security:security-crypto:${rootProject.ext.securityCryptoVersion}"
+
+    // WorkManager for background tasks
+    implementation "androidx.work:work-runtime:${rootProject.ext.workVersion}"
+
+    // Markdown rendering
+    implementation ("io.noties.markwon:core:4.6.2") {
+        exclude group: 'org.jetbrains', module: 'annotations'
+    }
+    implementation ("io.noties.markwon:editor:4.6.2") {
+        exclude group: 'org.jetbrains', module: 'annotations'
+    }
+    implementation ("io.noties.markwon:syntax-highlight:4.6.2") {
+        exclude group: 'org.jetbrains', module: 'annotations'
+    }
+
+    // Testing
+    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
+    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
+    testImplementation "org.mockito:mockito-inline:5.2.0"
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
+    testImplementation "io.reactivex.rxjava3:rxjava:${rootProject.ext.rxJavaVersion}"
+
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"
+    androidTestImplementation "androidx.test:runner:1.5.2"
+    androidTestImplementation "androidx.test:rules:1.5.0"
+}

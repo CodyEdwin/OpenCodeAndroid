@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.main.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/surface"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/text_primary"
+            app:menu="@menu/menu_main" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content Area -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Sessions RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_sessions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingBottom="80dp"
+                tools:listitem="@layout/item_session" />
+
+            <!-- Empty State -->
+            <LinearLayout
+                android:id="@+id/layout_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_large"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="@dimen/empty_state_icon_size"
+                    android:layout_height="@dimen/empty_state_icon_size"
+                    android:src="@drawable/ic_chat"
+                    android:contentDescription="@string/cd_app_logo"
+                    app:tint="@color/text_secondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:text="@string/sessions_empty_title"
+                    android:textAppearance="@style/TextAppearance.OpenCode.Title"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:gravity="center"
+                    android:text="@string/sessions_empty_subtitle"
+                    android:textAppearance="@style/TextAppearance.OpenCode.Body"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
+
+            <!-- Loading Progress -->
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:indeterminateTint="@color/primary" />
+
+        </FrameLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- FAB for new chat -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_new_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="72dp"
+        android:contentDescription="@string/action_new_chat"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/primary"
+        app:tint="@color/white" />
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/surface"
+        app:elevation="@dimen/bottom_nav_elevation"
+        app:itemIconTint="@color/bottom_nav_item_color"
+        app:itemTextColor="@color/bottom_nav_item_color"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_bottom_navigation" />
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="@dimen/nav_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/surface"
+        style="@style/Widget.OpenCode.NavigationDrawer"
+        app:headerLayout="@layout/nav_header"
+        app:itemIconTint="@color/nav_drawer_item_color"
+        app:itemTextColor="@color/nav_drawer_item_color"
+        app:menu="@menu/menu_navigation_drawer" />
+
+    <!-- Drawer Layout -->
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <!-- Content is in CoordinatorLayout above -->
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

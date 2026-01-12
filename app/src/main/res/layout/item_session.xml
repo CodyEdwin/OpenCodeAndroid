@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/margin_medium"
+    android:layout_marginVertical="@dimen/margin_small"
+    app:cardBackgroundColor="@color/surface"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/elevation_low"
+    app:rippleColor="@color/ripple">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_medium">
+
+        <!-- Pin Icon -->
+        <ImageView
+            android:id="@+id/icon_pin"
+            android:layout_width="@dimen/icon_size_tiny"
+            android:layout_height="@dimen/icon_size_tiny"
+            android:src="@drawable/ic_pin"
+            android:visibility="gone"
+            android:contentDescription="@string/action_pin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/accent"
+            tools:visibility="visible" />
+
+        <!-- Session Title -->
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.OpenCode.Subtitle"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/text_time"
+            app:layout_constraintStart_toEndOf="@id/icon_pin"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Session Title" />
+
+        <!-- Time -->
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.OpenCode.Caption"
+            android:textColor="@color/text_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10:30" />
+
+        <!-- Model Name -->
+        <TextView
+            android:id="@+id/text_model"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.OpenCode.Caption"
+            android:textColor="@color/primary"
+            app:layout_constraintEnd_toStartOf="@id/text_message_count"
+            app:layout_constraintStart_toStartOf="@id/text_title"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            tools:text="GPT-5.1 Codex" />
+
+        <!-- Message Count -->
+        <TextView
+            android:id="@+id/text_message_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.OpenCode.Caption"
+            android:textColor="@color/text_secondary"
+            app:layout_constraintBottom_toBottomOf="@id/text_model"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_model"
+            tools:text="12 messages" />
+
+        <!-- Preview Text -->
+        <TextView
+            android:id="@+id/text_preview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.OpenCode.Body"
+            android:textColor="@color/text_secondary"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/text_title"
+            app:layout_constraintTop_toBottomOf="@id/text_model"
+            tools:text="Here's the code you requested..."
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
